@@ -1,0 +1,40 @@
+server:
+  port: 3864
+spring:
+  application:
+    name: SERVICE-GATEWAY
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          #为true按注册中心的服务名转发
+          enabled: true
+          #true服务名为小写，为false服务名为大写
+          lower-case-service-id: true
+feign:
+  httpclient:
+    enabled: true
+  # 数据压缩
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+  sentinel:
+    enabled: true
+project:
+  user:
+    name: SERVICE-USER
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
